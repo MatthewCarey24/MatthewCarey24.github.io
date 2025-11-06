@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - Matthew Carey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* --- Bernese Mountain Dog Palette --- */
+    :root {
+      --black: #0d0d0d;
+      --accent-gold: #d4af37;
+      --off-white: #f5f5f5;
+      --muted-gray: #b0a99f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--off-white);
+      font-family: "Times New Roman", serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding-top: 3rem;
+    }
+
+    h1 {
+      color: var(--off-white);
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    nav {
+      margin: 1.5rem 0;
+    }
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: var(--off-white);
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--accent-gold);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover::after {
+      width: 40%;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .profile-pic {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      margin-bottom: 2.5rem;
+    }
+
+    .about-content {
+      max-width: 700px;
+      text-align: left;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content strong {
+      color: var(--accent-gold);
+      font-weight: normal;
+    }
+
+    footer {
+      background-color: rgba(13, 13, 13, 0.8);
+      padding: 2rem 0 1.5rem;
+      text-align: center;
+      margin-top: auto;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .socials {
+      margin-bottom: 1rem;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .socials img {
+      width: 24px;
+      height: 24px;
+      filter: invert(100%);
+      transition: filter 0.3s ease, transform 0.2s ease;
+    }
+    
+    .socials a:hover {
+      transform: translateY(-2px);
+    }
+
+    .socials a:hover img {
+      filter: invert(38%) sepia(92%) saturate(500%) hue-rotate(10deg) brightness(1.2);
+    }
+
+    .contact {
+      font-size: 0.9rem;
+      color: var(--muted-gray);
+      margin: 0;
+    }
+
+    /* Spotlight Section */
+    .spotlight-section {
+      max-width: 100%;
+      margin: 3rem auto 2rem;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    .spotlight-section h2 {
+      color: var(--accent-gold);
+      font-size: 1.3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .spotlight-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 80px;
+    }
+
+    .spotlight-grid {
+      display: flex;
+      gap: 2rem;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      min-height: 550px;
+      width: 100%;
+    }
+
+    .spotlight-card {
+      background: rgba(245, 245, 245, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s ease;
+      width: 300px;
+      position: absolute;
+      left: 50%;
+      margin-left: -150px;
+      transform: scale(1);
+      opacity: 1;
+      z-index: 3;
+    }
+
+    .spotlight-card.left {
+      transform: translateX(-350px) scale(0.85);
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .spotlight-card.right {
+      transform: translateX(350px) scale(0.85);
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .spotlight-card.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.7);
+    }
+
+    .spotlight-card:hover {
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+      border-color: var(--accent-gold);
+    }
+
+    .spotlight-card.left:hover {
+      transform: translateX(-350px) scale(0.88);
+    }
+
+    .spotlight-card.right:hover {
+      transform: translateX(350px) scale(0.88);
+    }
+
+    .spotlight-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(212, 175, 55, 0.2);
+      border: 2px solid var(--accent-gold);
+      color: var(--accent-gold);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .spotlight-nav:hover {
+      background: var(--accent-gold);
+      color: var(--black);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .spotlight-nav.prev {
+      left: -500px;
+    }
+
+    .spotlight-nav.next {
+      right: -500px;
+    }
+
+    .spotlight-card.music-card {
+      aspect-ratio: auto;
+    }
+
+    .spotify-embed {
+      width: 100%;
+      height: 352px;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      display: block;
+    }
+
+    .spotify-embed-wrapper {
+      width: 100%;
+      height: 352px;
+      overflow: hidden;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .spotlight-image {
+      width: 100%;
+      flex: 1;
+      object-fit: cover;
+      background: rgba(245, 245, 245, 0.1);
+      display: block;
+      min-height: 200px;
+    }
+
+    .spotlight-info {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .spotlight-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted-gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .spotlight-text {
+      font-size: 0.9rem;
+      color: var(--off-white);
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 0.95rem;
+      }
+
+      .profile-pic {
+        width: 180px;
+        height: 180px;
+      }
+
+      .about-content {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+
+      .spotlight-section {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+      }
+
+      .spotlight-section h2 {
+        font-size: 1.3rem;
+      }
+
+      .spotlight-container {
+        padding: 3rem 60px;
+      }
+
+      .spotlight-grid {
+        min-height: 480px;
+      }
+
+      .spotlight-card {
+        width: 250px;
+        margin-left: -125px;
+      }
+
+      .spotlight-card.left {
+        transform: translateX(-280px) scale(0.85);
+      }
+
+      .spotlight-card.right {
+        transform: translateX(280px) scale(0.85);
+      }
+
+      .spotlight-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .spotlight-nav.prev {
+        left: -50px;
+      }
+
+      .spotlight-nav.next {
+        right: -50px;
+      }
+
+      .spotify-embed {
+        height: 300px;
+      }
+
+      .spotify-embed-wrapper {
+        height: 300px;
+      }
+
+      .contact {
+        font-size: 0.85rem;
+        padding: 0 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .profile-pic {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About Me</h1>
+    <nav>
+      <a href="projects/index.html">Projects</a>
+      <a href="index.html">Home</a>
+      <a href="Matthew Carey - Resume.pdf">Resume</a>
+    </nav>
+  </header>
+
+  <main>
+    <img src="images/MAC-Yearbook-2021.jpeg" alt="Matthew Carey smiling in professional attire" class="profile-pic">
+
+    <div class="about-content">
+      <p>
+        Hi, I'm <strong>Matthew</strong>. 
+      </p>
+
+      <p>
+        I'm an engineer currently applying to medical school with a passion for applying computational technology to systems medicine. I'm particularly interested in how computational models and analytical approaches can help us better understand complex biological systems and improve patient outcomes.
+      </p>
+      <p>
+        I currently split my time between Boston and Philadelphia. In Philly, I work as an Emergency Room scribe. In Boston, I work in a Mechanical Engineering lab at Tufts, conduct clinical follow-up research with an orthopaedic group, and collaborate on research that uses machine learning to develop optimal similarity scoring metrics for mass spectrometry.</p>
+      <p>
+        Outside of my academic and professional pursuits, I'm passionate about staying active through lifting, running, and martial arts. I love spending time outdoors, obsessing over the perfect coffee brew, experimenting in the kitchen, and playing guitar.
+      </p>
+    </div>
+
+    <!-- Spotlight Section -->
+    <div class="spotlight-section">
+      <h2>Spotlight</h2>
+      
+      <div class="spotlight-container">
+        <button class="spotlight-nav prev" onclick="navigateSpotlight(-1)">‹</button>
+        <button class="spotlight-nav next" onclick="navigateSpotlight(1)">›</button>
+        
+        <div class="spotlight-grid" id="spotlightGrid">
+          <!-- Music Card with Spotify Embed -->
+          <div class="spotlight-card music-card">
+            <div class="spotify-embed-wrapper">
+              <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/48wH8bAxvBJO2l14GmNLz7" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" scrolling="no"></iframe>
+            </div>
+            <div class="spotlight-info">
+              <div class="spotlight-label">On Repeat</div>
+              <div class="spotlight-text">Wait for the Moment - Vulfpeck</div>
+            </div>
+          </div>
+
+          <!-- Book Card -->
+          <div class="spotlight-card">
+            <img src="https://imgs.search.brave.com/OeEZUAEUalyXtERMW7TouLVTp9IDIDGz96VSscInXeU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iY2ku/a2lub2t1bml5YS5j/b20vanNwL2ltYWdl/cy9ib29rLWltZy85/NzgwMC85NzgwMDA3/Mi85NzgwMDA3MjUw/OTI5LkpQRw" alt="The Emperor Of All Maladies Book Cover" class="spotlight-image">
+            <div class="spotlight-info">
+              <div class="spotlight-label">Reading</div>
+              <div class="spotlight-text">The Emperor Of All Maladies</div>
+            </div>
+          </div>
+
+          <!-- Coffee Card -->
+          <div class="spotlight-card">
+            <img src="https://www.deathwishcoffee.com/cdn/shop/files/Medium_Roast_16oz_Ground_Angle_DTC_A4_2.jpg?v=1726752632&width=713" alt="Death Wish Coffee" class="spotlight-image">
+            <div class="spotlight-info">
+              <div class="spotlight-label">Current Brew</div>
+              <div class="spotlight-text">Death Wish Medium Roast</div>
+            </div>
+          </div>
+
+          <!-- Art Card 1 -->
+          <div class="spotlight-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Sunrise_on_the_Matterhorn_MET_DT218107.jpg" alt="img" class="spotlight-image">
+            <div class="spotlight-info">
+              <div class="spotlight-label">Looking At</div>
+              <div class="spotlight-text">Sunrise on the Matterhorn - Albert Bierstadt</div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentIndex = 0;
+      const cards = document.querySelectorAll('.spotlight-card');
+      
+      function updateCards() {
+        cards.forEach((card, index) => {
+          card.classList.remove('left', 'right', 'hidden');
+          
+          if (index === currentIndex) {
+            // Center card - full size and opacity
+            card.style.zIndex = 3;
+          } else if (index === currentIndex - 1 || (currentIndex === 0 && index === cards.length - 1)) {
+            // Left card
+            card.classList.add('left');
+          } else if (index === currentIndex + 1 || (currentIndex === cards.length - 1 && index === 0)) {
+            // Right card
+            card.classList.add('right');
+          } else {
+            // Hidden cards
+            card.classList.add('hidden');
+          }
+        });
+      }
+      
+      function navigateSpotlight(direction) {
+        currentIndex += direction;
+        
+        if (currentIndex < 0) {
+          currentIndex = cards.length - 1;
+        } else if (currentIndex >= cards.length) {
+          currentIndex = 0;
+        }
+        
+        updateCards();
+      }
+      
+      // Initialize on load
+      updateCards();
+    </script>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="https://github.com/MatthewCarey24" target="_blank" aria-label="GitHub Profile">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/matthew-carey-b80b6b223/" target="_blank" aria-label="LinkedIn Profile">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+    </div>
+    <div class="contact">
+      <p>Email: mac22739@gmail.com | Phone: (609) 707-4571</p>
+    </div>
+  </footer>
+</body>
+</html>

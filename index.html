@@ -1,32 +1,134 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Matthew Carey</title>
   <style>
+    /* --- Bernese Mountain Dog Palette --- */
+    :root {
+      --black: #0d0d0d;          /* Deep black background */
+      --accent-gold: #d4af37;    /* Warm gold */
+      --off-white: #f5f5f5;      /* Soft white */
+      --muted-gray: #b0a99f;     /* Muted gray for footer */
+    }
+
     body {
-      background-color: #f5f5f5;
-      font-family: Comic Sans MS;
+      background-color: var(--black);
+      color: var(--off-white);
+      font-family: "Times New Roman", serif;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding-top: 50px;
     }
+
     h1 {
-      font-size: 3em;
-      color: #d9534f;
+      margin-top: 20%;
+      color: var(--off-white);
+      letter-spacing: 1px;
     }
-    img {
-      margin-top: 20px;
-      max-width: 400px;
-      border: 5px dashed #666;
+
+    nav {
+      margin-top: 1rem;
     }
-    p {
-      font-size: 1.2em;
-      color: #555;
+
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: var(--off-white);
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    /* Subtle gold on hover */
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* Underline animation (much smaller now) */
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--accent-gold);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover::after {
+      width: 40%;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .socials img {
+      width: 22px;
+      height: 22px;
+      filter: invert(100%); /* makes icon white by default */
+      transition: filter 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .socials a:hover img {
+      color: var(--accent-gold);
+      filter: invert(38%) sepia(92%) saturate(500%) hue-rotate(10deg) brightness(1.2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    }
+    
+    
+
+    .contact {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--muted-gray);
+    }
+
+    /* Global hover glow for all clickable elements */
+    a, button {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    a:hover, button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     }
   </style>
 </head>
 <body>
-  <h1> Under Constructing </h1>
-  <img src="capybara.webp" alt="capybara">
+  <h1>Matthew Carey</h1>
+
+  <nav>
+    <a href="projects/index.html">Projects</a>
+    <a href="about.html">About</a>
+    <a href="Matthew Carey - Resume.pdf">Resume</a>
+  </nav>
+
+  <footer>
+    <div class="socials">
+      <a href="https://github.com/MatthewCarey24" target="_blank">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/matthew-carey-b80b6b223/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+    </div>
+    <div class="contact">
+      <p>Email: mac22739@gmail.com | Phone: (609) 707-4571</p>
+    </div>
+  </footer>
 </body>
 </html>
