@@ -5,12 +5,12 @@
   <title>Projects - Matthew Carey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-        /* --- Bernese Mountain Dog Palette --- */
+    /* --- Bernese Mountain Dog Palette --- */
     :root {
-      --black: #0d0d0d;          /* Deep black background */
-      --accent-gold: #d4af37;    /* Warm gold */
-      --off-white: #f5f5f5;      /* Soft white */
-      --muted-gray: #b0a99f;     /* Muted gray for footer */
+      --black: #0d0d0d;
+      --accent-gold: #d4af37;
+      --off-white: #f5f5f5;
+      --muted-gray: #b0a99f;
     }
 
     body { background-color: var(--black); color: var(--off-white); font-family: "Times New Roman", serif; margin: 0; padding: 0; text-align: center; }
@@ -34,12 +34,10 @@
       transition: color 0.3s ease;
     }
 
-    /* Subtle gold on hover */
     nav a:hover {
       color: var(--accent-gold);
     }
 
-    /* Underline animation (much smaller now) */
     nav a::after {
       content: "";
       position: absolute;
@@ -62,42 +60,6 @@
       color: var(--muted-gray);
     }
 
-    .socials a {
-      margin: 0 10px;
-      display: inline-block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .socials img {
-      width: 22px;
-      height: 22px;
-      filter: invert(100%); /* makes icon white by default */
-      transition: filter 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .socials a:hover img {
-      color: var(--accent-gold);
-      filter: invert(38%) sepia(92%) saturate(500%) hue-rotate(10deg) brightness(1.2);
-      transform: translateY(-2px);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-    }
-
-    .contact {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: var(--muted-gray);
-    }
-
-    /* Global hover glow for all clickable elements */
-    a, button {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    a:hover, button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
-    }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -109,28 +71,29 @@
     .project-card {
       display: block;
       background-color: #1a1a1a;
-      border: 1px solid #4b2e14; /* your walnut brown accent */
+      border: 1px solid #4b2e14;
       color: #f5f5f5;
       text-decoration: none;
       border-radius: 10px;
       padding: 15px;
-      width: 300px; /* or any size you want the card to be */
+      width: 300px;
       margin: 20px auto;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .project-card img {
-      width: 100%;   /* fills the width of the card */
-      height: auto;  /* keeps aspect ratio */
-      border-radius: 6px; /* optional, softens corners */
-      object-fit: cover;  /* optional, crops gracefully if constrained */
-    }
 
+    /* --- FIXED HEIGHT IMAGES, NO CROPPING --- */
+    .project-card img {
+      height: 180px;        /* all images same height */
+      width: 100%;          /* scale width while keeping aspect ratio */
+      object-fit: contain;  /* zooms in/out without cropping */
+      background-color: #000; /* optional clean background */
+      border-radius: 6px;
+    }
 
     .project-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); /* subtle gold glow */
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
     }
-
 
     .project-card h2 {
       margin: 0 0 0.5rem;
@@ -144,15 +107,10 @@
       color: #aaa;
     }
 
-    .socials a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-
-    .socials img {
+    .socials a img {
       width: 20px;
       height: 20px;
-      filter: invert(1); /* makes icons white */
+      filter: invert(1);
     }
 
     .contact {
@@ -170,9 +128,10 @@
     <a href="../about.html">About</a>
     <a href="../Matthew Carey - Resume.pdf">Resume</a>
   </nav>
-<p>Things I've made or am working on:</p>
+  <p>Things I've made or am working on:</p>
 
   <div class="projects-grid">
+
     <a href="" class="project-card">
       <h2>Cafe Racer</h2>
       <p>Ongoing project resotring a 1978 Honda CB550 Cafe Racer (sorry mom).</p>
@@ -188,7 +147,7 @@
     <a href="https://github.com/MatthewCarey24/OncoRx" class="project-card">
       <h2>OncoRx</h2>
       <p>Machine learning model predicting cell line responses to oncological treatment based on gene expression data.</p>
-      <img src = "https://www.bme.jhu.edu/wp-content/uploads/2020/02/Computational-Medicine-Banner-3.jpg">
+      <img src="https://www.bme.jhu.edu/wp-content/uploads/2020/02/Computational-Medicine-Banner-3.jpg">
     </a>
 
     <a href="" class="project-card">
@@ -200,7 +159,7 @@
     <a href="" class="project-card">
       <h2>ETFM</h2>
       <p>Transformer-based model predicting ETF daily returns by learning constituent stock interactions, inspired by single-cell foundation models</p>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Philippine-stock-market-board.jpg" >
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Philippine-stock-market-board.jpg">
     </a>
 
     <a href="" class="project-card">
@@ -212,12 +171,12 @@
     <a href="https://github.com/MatthewCarey24/BBallBot" class="project-card">
       <h2>Betbot</h2>
       <p>Machine learning model to predict the outcome of NBA games.</p>
-      <img src = "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/500px-National_Basketball_Association_logo.svg.png">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/500px-National_Basketball_Association_logo.svg.png">
     </a>
 
-
   </div>
-   <footer>
+
+  <footer>
     <div class="socials">
       <a href="https://github.com/MatthewCarey24" target="_blank">
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg" alt="GitHub">
